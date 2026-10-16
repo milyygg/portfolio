@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Михаил Милосердов - веб-разработка и цифровые продукты</title>
+<meta name="description" content="Портфолио Михаила Милосердова: сайты, каталоги, карточки товаров и визуальные материалы. Работы, подход и контакты.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23ff8a5b'/><text x='50' y='68' font-size='52' font-family='Arial' font-weight='800' text-anchor='middle' fill='%230e0f13'>М</text></svg>">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{
+  --bg:#0e0f13; --bg2:#15171d; --card:#1a1c23; --line:#2a2d37;
+  --text:#f3efe9; --soft:#a9a7b1; --accent:#ff8a5b; --accent2:#ffd27a;
+  --radius:24px; --font:"Manrope","Segoe UI",system-ui,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+ul,ol{list-style:none}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+.section{padding:90px 0}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h2{font-size:clamp(30px,5vw,48px);line-height:1.1;letter-spacing:-.02em;font-weight:800;margin-bottom:14px}
+.lead{color:var(--soft);max-width:60ch;font-size:18px;margin-bottom:44px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 28px;border-radius:100px;font:700 16px var(--font);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .2s,background .2s,border-color .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn--main{background:var(--accent);color:#1a0f0a}
+.btn--main:hover{background:#ffa07a}
+.btn--ghost{border-color:var(--line);color:var(--text)}
+.btn--ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* шапка */
+.top{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(14,15,19,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top__in{display:flex;align-items:center;justify-content:space-between;min-height:68px;gap:16px}
+.logo{font-weight:800;font-size:18px;text-decoration:none;letter-spacing:-.01em}
+.logo span{color:var(--accent)}
+.nav{display:none;gap:30px}
+.nav a{text-decoration:none;color:var(--soft);font-weight:600;font-size:15px;transition:color .2s}
+.nav a:hover{color:var(--text)}
+.top .btn{min-height:42px;padding:0 20px;font-size:14px}
+@media(min-width:900px){.nav{display:flex}}
+
+/* hero */
+.hero{padding:140px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,138,91,.28),transparent 65%);right:-160px;top:-120px;pointer-events:none}
+.hero__grid{display:grid;gap:48px;align-items:center;grid-template-columns:minmax(0,1fr);position:relative}
+.hero__grid>*{min-width:0}
+.hero h1{font-size:clamp(38px,7.2vw,72px);line-height:1.02;letter-spacing:-.03em;font-weight:800;margin-bottom:22px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.sub{font-size:clamp(17px,2.4vw,20px);color:var(--soft);max-width:50ch;margin-bottom:32px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:14px}
+.photo{position:relative;max-width:480px;width:100%;margin-inline:auto}
+.photo img{border-radius:32px;aspect-ratio:4/5;object-fit:cover;object-position:35% 20%;width:100%;border:1px solid var(--line)}
+.photo::after{content:"";position:absolute;inset:-14px;border:1.5px solid var(--accent);border-radius:40px;transform:rotate(3deg);z-index:-1;opacity:.55}
+.photo__tag{position:absolute;left:-14px;bottom:28px;background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:12px 18px;font-size:14px;font-weight:700;box-shadow:0 20px 40px -20px #000}
+.photo__tag small{display:block;color:var(--soft);font-weight:600;font-size:12.5px}
+@media(min-width:900px){.hero__grid{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}}
+
+/* работы */
+.works{display:grid;gap:28px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:900px){.works{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.work{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s}
+.work:hover{transform:translateY(-6px);border-color:#44485a}
+.work__img{display:block;aspect-ratio:16/9;overflow:hidden;background:#222}
+.work__img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.work:hover .work__img img{transform:scale(1.04)}
+.work__body{padding:24px 26px 28px;display:flex;flex-direction:column;gap:12px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font-size:12.5px;font-weight:700;padding:4px 12px;border-radius:100px;background:#252833;color:var(--soft)}
+.tags .st{background:rgba(255,138,91,.15);color:var(--accent)}
+.work h3{font-size:24px;line-height:1.15;letter-spacing:-.01em}
+.work p{color:var(--soft);font-size:15.5px}
+.work p b{color:var(--text);font-weight:700}
+.work__links{margin-top:auto;padding-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+.work__links a,.work__links span{font-size:14.5px;font-weight:700;text-decoration:none;padding:10px 18px;border-radius:100px;border:1.5px solid var(--line);transition:border-color .2s,color .2s}
+.work__links a:first-child{background:var(--accent);border-color:var(--accent);color:#1a0f0a}
+.work__links a:hover{border-color:var(--accent)}
+.work__links span{color:var(--soft);border-style:dashed}
+
+/* графика */
+.gfx{background:var(--bg2);border-block:1px solid var(--line)}
+.gallery{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:760px){.gallery{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1000px){.gallery{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.gallery a{display:flex;align-items:center;justify-content:center;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#101116;transition:transform .3s,border-color .3s}
+.gallery--cards a{aspect-ratio:3/4}
+.gallery--logos a{aspect-ratio:1/1}
+.gallery a:hover{transform:translateY(-4px);border-color:var(--accent)}
+.gallery img{width:100%;height:100%;object-fit:contain}
+.subtitle{font-size:20px;font-weight:700;margin:42px 0 16px}
+.subtitle:first-of-type{margin-top:0}
+
+/* услуги */
+.prices{display:grid;gap:22px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:720px){.prices{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.price{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;display:flex;flex-direction:column;gap:10px}
+.price--hot{border-color:var(--accent);background:linear-gradient(160deg,#241a16,var(--card))}
+.price h3{font-size:22px}
+.price .cost{font-size:34px;font-weight:800;letter-spacing:-.02em}
+.price .cost small{font-size:15px;color:var(--soft);font-weight:600}
+.price p{color:var(--soft);font-size:15.5px}
+.price ul{margin-top:6px;display:grid;gap:8px;font-size:15px}
+.price li::before{content:"✓";color:var(--accent);font-weight:800;margin-right:10px}
+.note{margin-top:26px;color:var(--soft);font-size:15px}
+
+/* процесс */
+.steps{display:grid;gap:18px;grid-template-columns:minmax(0,1fr);counter-reset:s}
+@media(min-width:760px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1040px){.steps{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px}
+.steps li::before{content:"0" counter(s);display:block;font-size:34px;font-weight:800;color:var(--accent);margin-bottom:10px;letter-spacing:-.02em}
+.steps h3{font-size:19px;margin-bottom:6px}
+.steps p{color:var(--soft);font-size:15px}
+
+/* обо мне */
+.about{display:grid;gap:40px;grid-template-columns:minmax(0,1fr);align-items:start}
+@media(min-width:900px){.about{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}}
+.about p{color:var(--soft);font-size:17px;margin-bottom:16px;max-width:60ch}
+.about p b{color:var(--text)}
+.skills{display:flex;flex-wrap:wrap;gap:10px}
+.skills li{padding:9px 16px;border-radius:100px;border:1px solid var(--line);background:var(--card);font-weight:600;font-size:14.5px}
+.skills-title{font-size:14px;color:var(--soft);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+
+/* кратко об услугах */
+.service-preview{background:var(--bg2);border-block:1px solid var(--line)}
+.service-preview__head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:24px;margin-bottom:32px}
+.service-preview__head .lead{margin-bottom:0}
+.service-preview__grid{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+.service-mini{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;transition:transform .25s,border-color .25s}
+.service-mini:hover{transform:translateY(-4px);border-color:#44485a}
+.service-mini span{display:block;color:var(--accent);font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px}
+.service-mini h3{font-size:21px;margin-bottom:7px}
+.service-mini p{color:var(--soft);font-size:15px}
+@media(min-width:760px){.service-preview__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* контакты */
+.contacts{background:linear-gradient(160deg,#23160f,var(--bg2));border-top:1px solid var(--line)}
+.cgrid{display:grid;gap:18px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:760px){.cgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cbox{display:block;text-decoration:none;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;transition:border-color .2s,transform .2s}
+.cbox:hover{border-color:var(--accent);transform:translateY(-3px)}
+.cbox small{display:block;color:var(--accent);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:12.5px;margin-bottom:6px}
+.cbox strong{font-size:24px;letter-spacing:-.01em}
+.cbox span{display:block;color:var(--soft);font-size:15px;margin-top:4px}
+footer{padding:30px 0;border-top:1px solid var(--line);color:var(--soft);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+footer a{text-underline-offset:3px}
+
+@media(prefers-reduced-motion:no-preference){
+  .fade{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+  .fade.in{opacity:1;transform:none}
+}
+@media(max-width:560px){
+  .wrap{width:calc(100% - 28px)}
+  .top__in{gap:10px}
+  .top .btn{min-height:40px;padding:0 14px;font-size:13px;white-space:nowrap}
+  .hero{padding-top:118px}
+  .hero h1{font-size:clamp(34px,10.5vw,43px);overflow-wrap:anywhere}
+  .hero p.sub{font-size:17px;overflow-wrap:anywhere}
+  .hero__cta .btn{flex:1 1 150px;padding-inline:16px}
+  .service-preview__head .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top__in">
+    <a class="logo" href="#top">Михаил<span>.</span>М</a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#works">Работы</a>
+      <a href="#graphics">Графика</a>
+      <a href="services/index.html">Услуги и цены</a>
+      <a href="#about">Обо мне</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="btn btn--main" href="#contacts">Связаться</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="eyebrow">Санкт-Петербург · веб-разработка и дизайн</span>
+      <h1>Создаю цифровые продукты, которыми <em>приятно пользоваться</em></h1>
+      <p class="sub">Я Михаил. Разрабатываю сайты, каталоги и графику - от идеи и структуры до готового результата по ссылке.</p>
+      <div class="hero__cta">
+        <a class="btn btn--main" href="#works">Смотреть работы</a>
+        <a class="btn btn--ghost" href="#services">Что я могу сделать</a>
+      </div>
+    </div>
+    <div class="photo">
+      <img src="assets/mikhail.jpg" alt="Михаил Милосердов" width="480" height="600">
+      <div class="photo__tag">Михаил Милосердов<small>веб-разработка · Санкт-Петербург</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="works">
+  <div class="wrap">
+    <span class="eyebrow">работы</span>
+    <h2>Сайты и кейсы</h2>
+    <p class="lead">Опубликованные работы и демонстрационные проекты. У каждой работы указан формат и статус; сайты можно посмотреть на телефоне и компьютере.</p>
+    <div class="works">
+
+      <article class="work fade">
+        <a class="work__img" href="https://milyygg.github.io/pigeon-service/" target="_blank" rel="noopener"><img src="assets/previews/pigeon-640.webp" srcset="assets/previews/pigeon-640.webp 640w, assets/previews/pigeon-1200.webp 1200w" sizes="(min-width: 900px) 380px, (min-width: 700px) 50vw, 100vw" width="1200" height="675" decoding="async" alt="Сайт Pigeon Service на компьютере и телефоне" loading="lazy"></a>
+        <div class="work__body">
+          <div class="tags"><span class="st">Для клиента</span><span>Сайт-визитка</span></div>
+          <h3>Pigeon Service</h3>
+          <p><b>Задача.</b> У частного мастера по ремонту техники были только объявления на Авито. Нужно было показать цены, работы и отзывы в одном месте.</p>
+          <p><b>Решение.</b> Яркий сайт с прайсом, примерами ремонтов, отзывами, блоком «Обо мне» и кнопками звонка и Telegram. Согласован с мастером.</p>
+          <div class="work__links"><a href="https://milyygg.github.io/pigeon-service/" target="_blank" rel="noopener">Открыть сайт</a><a href="https://github.com/milyygg/pigeon-service" target="_blank" rel="noopener">Код</a></div>
+        </div>
+      </article>
+
+      <article class="work fade">
+        <a class="work__img" href="https://milyygg.github.io/fleur-flowers/" target="_blank" rel="noopener"><img src="assets/previews/fleur-640.webp" srcset="assets/previews/fleur-640.webp 640w, assets/previews/fleur-1200.webp 1200w" sizes="(min-width: 900px) 380px, (min-width: 700px) 50vw, 100vw" width="1200" height="675" decoding="async" alt="Сайт цветочной студии FLEUR на компьютере и телефоне" loading="lazy"></a>
+        <div class="work__body">
+          <div class="tags"><span class="st">Демонстрационный проект</span><span>Каталог · корзина</span></div>
+          <h3>FLEUR - цветочная студия</h3>
+          <p><b>Задача.</b> Показать путь выбора букета: категория, карточка товара, корзина и оформление.</p>
+          <p><b>Решение.</b> Учебный каталог с фильтрами, корзиной, расчётом суммы и сохранением выбора в браузере. Адаптирован под телефон. Магазин вымышлен, реальные заказы и оплата не выполняются.</p>
+          <div class="work__links"><a href="https://milyygg.github.io/fleur-flowers/" target="_blank" rel="noopener">Открыть сайт</a><a href="https://github.com/milyygg/fleur-flowers" target="_blank" rel="noopener">Код</a></div>
+        </div>
+      </article>
+
+      <article class="work fade">
+        <a class="work__img" href="https://milyygg.github.io/demo-last-signal/" target="_blank" rel="noopener"><img src="assets/previews/last-signal-640.webp" srcset="assets/previews/last-signal-640.webp 640w, assets/previews/last-signal-1200.webp 1200w" sizes="(min-width: 900px) 380px, (min-width: 700px) 50vw, 100vw" width="1200" height="750" decoding="async" alt="Лендинг квеста Последний сигнал" loading="lazy"></a>
+        <div class="work__body">
+          <div class="tags"><span class="st">Демонстрационный проект</span><span>Лендинг</span></div>
+          <h3>Последний сигнал - квест</h3>
+          <p><b>Задача.</b> Передать атмосферу одного квеста и провести посетителя от знакомства с сюжетом к выбору сеанса.</p>
+          <p><b>Решение.</b> Атмосферный лендинг с сюжетом, правилами, календарём, выбором времени и расчётом стоимости команды. Квест вымышлен: открывается только пример подтверждения, реальная бронь и оплата не создаются.</p>
+          <div class="work__links"><a href="https://milyygg.github.io/demo-last-signal/" target="_blank" rel="noopener">Открыть сайт</a><a href="https://github.com/milyygg/demo-last-signal" target="_blank" rel="noopener">Код</a></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section gfx" id="graphics">
+  <div class="wrap">
+    <span class="eyebrow">графика</span>
+    <h2>Карточки товаров и логотипы</h2>
+    <p class="lead">Инфографика для Wildberries и Ozon, логотипы и визуальные материалы для брендов.</p>
+    <h3 class="subtitle">Карточки для маркетплейсов</h3>
+    <div class="gallery gallery--cards fade">
+      <a href="assets/graphics/card-microphone-2026.png" target="_blank" rel="noopener"><img src="assets/previews/card-microphone-640.webp" srcset="assets/previews/card-microphone-640.webp 640w, assets/previews/card-microphone-1200.webp 1086w" sizes="(min-width: 900px) 380px, (min-width: 700px) 50vw, 100vw" width="1086" height="1448" decoding="async" alt="Карточка товара: конденсаторный микрофон" loading="lazy"></a>
+      <a href="assets/graphics/card-headphones-2026.png" target="_blank" rel="noopener"><img src="assets/previews/card-headphones-640.webp" srcset="assets/previews/card-headphones-640.webp 640w, assets/previews/card-headphones-1200.webp 1086w" sizes="(min-width: 900px) 380px, (min-width: 700px) 50vw, 100vw" width="1086" height="1448" decoding="async" alt="Карточка товара: беспроводные наушники" loading="lazy"></a>
+      <a href="assets/graphics/card-pitcher-2026.png" target="_blank" rel="noopener"><img src="assets/previews/card-pitcher-640.webp" srcset="assets/previews/card-pitcher-640.webp 640w, assets/previews/card-pitcher-1200.webp 1086w" sizes="(min-width: 900px) 380px, (min-width: 700px) 50vw, 100vw" width="1086" height="1448" decoding="async" alt="Карточка товара: стеклянный кувшин" loading="lazy"></a>
+      <a href="assets/graphics/card-socks-2026.png" target="_blank" rel="noopener"><img src="assets/previews/card-socks-640.webp" srcset="assets/previews/card-socks-640.webp 640w, assets/previews/card-socks-1200.webp 1086w" sizes="(min-width: 900px) 380px, (min-width: 700px) 50vw, 100vw" width="1086" height="1448" decoding="async" alt="Карточка товара: мужские носки" loading="lazy"></a>
+      <a href="assets/graphics/card-sunscreen-2026.png" target="_blank" rel="noopener"><img src="assets/previews/card-sunscreen-640.webp" srcset="assets/previews/card-sunscreen-640.webp 640w, assets/previews/card-sunscreen-1200.webp 1086w" sizes="(min-width: 900px) 380px, (min-width: 700px) 50vw, 100vw" width="1086" height="1448" decoding="async" alt="Карточка товара: солнцезащитный крем" loading="lazy"></a>
+    </div>
+    <h3 class="subtitle">Логотипы</h3>
+    <div class="gallery gallery--logos fade">
+      <a href="assets/graphics/logo-nexus.jpg" target="_blank" rel="noopener"><img src="assets/graphics/logo-nexus.jpg" alt="Логотип компьютерного клуба Nexus Cybernetics" loading="lazy"></a>
+      <a href="assets/graphics/logo-aura.jpg" target="_blank" rel="noopener"><img src="assets/graphics/logo-aura.jpg" alt="Логотип цветочного магазина Aura Botanica" loading="lazy"></a>
+      <a href="assets/graphics/logo-findme.jpg" target="_blank" rel="noopener"><img src="assets/graphics/logo-findme.jpg" alt="Логотип Find Me" loading="lazy"></a>
+      <a href="assets/graphics/logo-onlinestore.jpg" target="_blank" rel="noopener"><img src="assets/graphics/logo-onlinestore.jpg" alt="Логотип интернет-магазина Online Store" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap about">
+    <div class="fade">
+      <span class="eyebrow">обо мне</span>
+      <h2>Привет, я Михаил</h2>
+      <p>Живу в Санкт-Петербурге. Получил специальность «Информационные системы и программирование» и квалификацию «Разработчик веб- и мультимедийных приложений». Работал с операционными процессами и командами в <b>Ozon Fresh и СДЭК</b>, поэтому умею смотреть на цифровой продукт не только как разработчик, но и глазами клиента.</p>
+      <p>Разрабатываю сайты, каталоги и графику. Люблю понятные интерфейсы, аккуратную адаптивную вёрстку и результат, который можно открыть по ссылке и сразу проверить.</p>
+      <p>Процесс и результаты публикую в Telegram-канале <a href="https://t.me/milyyggAI" target="_blank" rel="noopener">«Типичные&nbsp;будни&nbsp;с&nbsp;ИИ»</a>.</p>
+    </div>
+    <div class="fade">
+      <div class="skills-title">Чем пользуюсь</div>
+      <ul class="skills">
+        <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Адаптивная вёрстка</li><li>Tilda</li><li>Git и GitHub</li><li>Карточки для WB и Ozon</li><li>Логотипы</li><li>Excel и Word</li><li>Jira</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section service-preview" id="services">
+  <div class="wrap">
+    <div class="service-preview__head">
+      <div>
+        <span class="eyebrow">услуги</span>
+        <h2>Помогу превратить задачу в понятный результат</h2>
+        <p class="lead">Здесь только основные направления. На отдельной странице можно сравнить форматы, увидеть примеры и узнать ориентировочную стоимость.</p>
+      </div>
+      <a class="btn btn--main" href="services/index.html">Смотреть услуги и цены</a>
+    </div>
+    <div class="service-preview__grid">
+      <article class="service-mini fade"><h3>Сайт-визитка</h3><p>Для специалиста, студии или компании: услуги, работы, доверие и удобная связь.</p></article>
+      <article class="service-mini fade"><h3>Лендинг</h3><p>Страница под одну услугу или предложение с ясным маршрутом до обращения.</p></article>
+      <article class="service-mini fade"><h3>Каталог</h3><p>Витрина товаров или услуг с категориями, карточками, фильтрами и корзиной.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section contacts" id="contacts">
+  <div class="wrap">
+    <span class="eyebrow">контакты</span>
+    <h2>Связаться со мной</h2>
+    <p class="lead">По вопросам работы, сотрудничества и проектов быстрее всего отвечаю в Telegram.</p>
+    <div class="cgrid">
+      <a class="cbox" href="https://t.me/milyy_gg" target="_blank" rel="noopener"><small>Telegram</small><strong>@milyy_gg</strong><span>Написать напрямую</span></a>
+      <a class="cbox" href="tel:+79112488875"><small>Телефон</small><strong>+7 911 248-88-75</strong><span>Звонок или WhatsApp</span></a>
+      <a class="cbox" href="https://t.me/milyyggAI" target="_blank" rel="noopener"><small>Telegram-канал</small><strong>Типичные будни с ИИ</strong><span>Процесс, результаты и новые работы</span></a>
+      <a class="cbox" href="https://github.com/milyygg" target="_blank" rel="noopener"><small>GitHub</small><strong>milyygg</strong><span>Код проектов</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Михаил Милосердов · Санкт-Петербург</span><span>Портфолио · <a href="services/index.html">услуги</a> · контакты</span></div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.fade');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.1});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
