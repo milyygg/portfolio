@@ -60,6 +60,11 @@ h2{font-size:clamp(30px,5vw,48px);line-height:1.1;letter-spacing:-.02em;font-wei
 @media(min-width:900px){.hero__grid{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}}
 
 /* работы */
+.works__heading{display:flex;align-items:center;justify-content:space-between;gap:36px;margin-bottom:44px}
+.works__heading>div{min-width:0;max-width:740px}
+.works__heading .lead{margin-bottom:0}
+.works__all{flex-shrink:0;white-space:nowrap}
+@media(max-width:760px){.works__heading{flex-direction:column;align-items:stretch;gap:24px}.works__all{align-self:center}}
 .works{display:grid;gap:28px;grid-template-columns:minmax(0,1fr)}
 @media(min-width:900px){.works{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .work{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s}
@@ -207,9 +212,14 @@ footer a{text-underline-offset:3px}
 
 <section class="section" id="works">
   <div class="wrap">
+    <div class="works__heading">
+    <div>
     <span class="eyebrow">работы</span>
     <h2>Сайты и кейсы</h2>
     <p class="lead">Опубликованные работы и демонстрационные проекты. У каждой работы указан формат и статус; сайты можно посмотреть на телефоне и компьютере.</p>
+    </div>
+    <a class="btn btn--main works__all" href="https://milyygg.github.io/works/" target="_blank" rel="noopener noreferrer" aria-label="Смотреть все работы (откроется в новой вкладке)">Смотреть все работы</a>
+    </div>
     <div class="works">
 
       <article class="work fade">
