@@ -213,7 +213,7 @@ window.portfolioTranslations = {
   "Посмотреть пример →": "View example →",
   "Карточки маркетплейса": "Marketplace product graphics",
   "Один готовый слайд с инфографикой для товара.": "One finished infographic slide for a product.",
-  "Комплект из 5 слайдов - 4 000 ₽": "A set of 5 slides - RUB 4,000",
+  "Комплект из 5 слайдов - 4 000 ₽": "A set of 5 slides - 4 000 ₽",
   "Композиция и оформление в едином стиле": "Consistent composition and visual style",
   "PNG/JPG в согласованном размере": "PNG/JPG in the agreed dimensions",
   "Итоговая стоимость зависит от количества разделов, готовности материалов и необходимых функций. Домен, платные сервисы и сторонние подписки оплачиваются отдельно.": "The final price depends on the number of sections, available content and required features. Domains, paid services and third-party subscriptions are billed separately.",
