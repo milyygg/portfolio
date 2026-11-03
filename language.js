@@ -14,6 +14,7 @@
   function translated(value) {
     const trimmed = value.trim();
     if (language === 'ru') return value;
+    if(document.body?.hasAttribute('data-service-currency') && /₽/.test(value))return (dictionaries[value.trim()]||value).replace(/([\d\s\u00a0]+)\s*₽/g,(_,n)=>{const rub=Number(n.replace(/\s/g,''));return ' $'+Math.ceil(rub/80.9734)+' / €'+Math.ceil(rub/90.4635);});
     let result = dictionaries[trimmed];
     if (!result) {
       const count = /^(Все проекты|Показано): (\d+)$/.exec(trimmed);
@@ -84,6 +85,8 @@
       }
       attributes.set(element,state);
     }
+    for(const a of root.querySelectorAll('a[data-href-en]')){if(!a.dataset.hrefRu)a.dataset.hrefRu=a.getAttribute('href');a.setAttribute('href',language==='en'?a.dataset.hrefEn:a.dataset.hrefRu);}
+    for(const a of root.querySelectorAll('a[data-href-en]')){if(!a.dataset.hrefRu)a.dataset.hrefRu=a.getAttribute('href');a.setAttribute('href',language==='en'?a.dataset.hrefEn:a.dataset.hrefRu);}
     if (control) {
       control.setAttribute('aria-label', language === 'en' ? 'Language' : 'Язык');
       for (const button of control.querySelectorAll('button')) button.setAttribute('aria-pressed', String(button.dataset.language === language));
@@ -94,6 +97,7 @@
       const source = old && current === old.rendered ? old.source : current;
       const english = image.dataset.srcEn || window.portfolioLocalizedImages?.[source];
       const rendered = language === 'en' && english ? english : source;
+      if(english && image.hasAttribute('srcset')){if(!image.dataset.originalSrcset)image.dataset.originalSrcset=image.getAttribute('srcset');if(language==='en')image.removeAttribute('srcset');else image.setAttribute('srcset',image.dataset.originalSrcset);}
       if (current !== rendered) image.setAttribute('src',rendered);
       imageSources.set(image,{source,rendered});
     }
@@ -113,7 +117,7 @@
   window.portfolioLanguage = {get language(){return language;},select,translate:translated};
   function start() {
     const style=document.createElement('style');
-    style.textContent='[data-language-control]{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:1000;display:flex;align-items:center;background:#17191e;color:#fff;border:1px solid #666;border-radius:28px;padding:3px;box-shadow:0 3px 16px #0003;font:600 13px/1.2 system-ui,sans-serif}[data-language-control] button{font:inherit;min-width:48px;min-height:44px;border:0;border-radius:24px;background:transparent;color:inherit;cursor:pointer}[data-language-control] button[aria-pressed=true]{background:#f3efe9;color:#17191e}[data-language-control] button:focus-visible{outline:3px solid #ff8a5b;outline-offset:2px}';
+    style.textContent='[data-language-control]{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:1000;display:flex;align-items:center;background:#17191e;color:#fff;border:1px solid #666;border-radius:9px;padding:2px;box-shadow:0 3px 16px #0003;font:600 13px/1.2 system-ui,sans-serif}[data-language-control] button{font:inherit;min-width:48px;min-height:44px;border:0;border-radius:5px;background:transparent;color:inherit;cursor:pointer}[data-language-control] button[aria-pressed=true]{background:transparent;color:#ff8a5b;text-decoration:underline;text-underline-offset:5px}[data-language-control] button:focus-visible{outline:3px solid #ff8a5b;outline-offset:2px}';
     document.head.append(style);
     control=document.createElement('div');
     control.dataset.languageControl='';control.setAttribute('role','group');control.setAttribute('aria-label','Language / Язык');
