@@ -1,0 +1,25 @@
+/* Progressive enhancement: content stays visible if JavaScript is unavailable. */
+.fade,.fade.in{opacity:1;transform:none}
+.motion-control{appearance:none;background:transparent;color:var(--soft);border:1px solid var(--line);border-radius:100px;padding:8px 14px;min-height:40px;cursor:pointer;font:600 14px var(--font)}
+.motion-control:hover{color:var(--text);border-color:var(--accent)}
+.motion-control:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+@media(prefers-reduced-motion:no-preference){
+  @supports(animation-timeline:view()){
+    html:not([data-motion=off]) .works .work{animation:case-arrive linear both;animation-timeline:view();animation-range:entry 0% entry 78%;transform-origin:50% 80%}
+    html:not([data-motion=off]) .works .work:nth-child(even){animation-name:case-arrive-right}
+    html:not([data-motion=off]) .section .wrap>h2,html:not([data-motion=off]) .works__heading h2{animation:title-arrive linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+    @keyframes case-arrive{from{opacity:.35;transform:translate3d(0,92px,0) rotate(-1.6deg) scale(.96)}to{opacity:1;transform:none}}
+    @keyframes case-arrive-right{from{opacity:.35;transform:translate3d(0,112px,0) rotate(1.6deg) scale(.96)}to{opacity:1;transform:none}}
+    @keyframes title-arrive{from{opacity:.4;transform:translate3d(0,30px,0)}to{opacity:1;transform:none}}
+  }
+  .hero .photo{transform-origin:center 60%}
+  .btn{transition:transform .18s cubic-bezier(.22,1,.36,1),background .18s,border-color .18s,color .18s}
+  .btn:active{transform:scale(.97)}
+}
+html[data-motion=off] *,html[data-motion=off] *::before,html[data-motion=off] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html[data-motion=off] .fade,html[data-motion=off] .work{opacity:1!important;transform:none!important}
+.work:focus-within{animation:none!important;opacity:1!important;transform:none!important}
+@media(max-width:760px){footer .wrap{gap:18px}.motion-control{align-self:center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.fade,.work{opacity:1!important;transform:none!important}}
+
+.motion-control[hidden]{display:none}
